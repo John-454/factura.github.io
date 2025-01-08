@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturas</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <div class="logo-header">
+        <img src="/assets/Logo.png">
+        <!--<h1>JohAn</h1>
+        <h4>Arte manual</h4>-->
+        <div class="company-info">
+            <h2>
+              <ng-container *ngFor="let line of companyInfo.name.split('\n')">
+                Joh An<br>
+              </ng-container>
+            </h2>
+            <p>
+              <ng-container *ngFor="let line of companyInfo.address.split('\n')">
+                Calle 15 # 6N-30 <br>
+              </ng-container>
+            </p>
+            <p>
+                <ng-container *ngFor="let line of companyInfo.address.split('\n')">
+                  Ipiales / Nariño <br>
+                </ng-container>
+              </p>
+            <p>315 288 3942</p>
+           
+          </div>
+    </div>
+
+    <div class="container">
+       
+        <div class="client-info">
+            <div class="form-group">
+                <label for="clientName">Nombre del Cliente:</label>
+                <input type="text" id="clientName" required>
+            </div>
+            <div class="form-group">
+                <label for="invoiceDate">Fecha:</label>
+                <input type="date" id="invoiceDate">
+            </div>
+        </div>
+
+        <div class="products-section">
+            <h2>Productos</h2>
+            <button id="addProductBtn" class="btn primary">Agregar Producto</button>
+            
+            <div class="products-table">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Descripción</th>
+                            <th>Precio Unit.</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="total-section">
+                <h3>Precio Final: $<span id="precioFinal">0.00</span></h3>
+            </div>
+
+            <button id="downloadPdfBtn" class="btn primary">Descargar PDF</button>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar productos -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Nuevo Producto</h2>
+            <div class="form-group">
+                <label for="quantity">Cantidad:</label>
+                <input type="number" id="quantity" min="1">
+            </div>
+            <div class="form-group">
+                <label for="description">Descripción:</label>
+                <input type="text" id="description">
+            </div>
+            <div class="form-group">
+                <label for="unitPrice">Precio Unitario:</label>
+                <input type="number" id="unitPrice" min="0" step="0.01">
+            </div>
+            <div class="modal-buttons">
+                <button id="cancelModalBtn" class="btn">Cancelar</button>
+                <button id="saveModalBtn" class="btn primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
